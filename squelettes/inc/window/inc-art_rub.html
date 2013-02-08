@@ -1,0 +1,24 @@
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>#SET{titre_rub,#TITRE}</BOUCLE_rubrique>
+
+				<B_articles>
+				<div  class="window">
+				<h3>#GET{titre_rub}</h3>
+					<ul>
+					<BOUCLE_articles(ARTICLES) {id_rubrique}{par titre}{lang}>
+						<li><a href="#URL_ARTICLE" title="[(#TITRE|texte_backend)] - [(#NOM_SITE|texte_backend)]" target="_blank">#TITRE</a></li>
+					</BOUCLE_articles>
+					</ul>
+				</div>
+				</B_articles>
+					<B_articles_alter>
+								<div class="window">
+				<h3>#GET{titre_rub}</h3>								
+					<ul>
+					<BOUCLE_articles_alter(ARTICLES) {id_rubrique} {par titre}>
+						<li><a href="#URL_ARTICLE" target="_blank" [title="[(#TITRE|texte_backend)] - [(#NOM_SITE|texte_backend)]">#TITRE</a> [#LANG]</li>
+					</BOUCLE_articles_alter>
+					</ul>
+								</div>
+					</B_articlesc_alter>						
+					<//B_articles>
+					

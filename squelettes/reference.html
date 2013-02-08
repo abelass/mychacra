@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>Réferences</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+
+</head>
+
+<body class="page_sommaire">
+	<div id="page">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}>
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><:accueil_site:></div>
+<div class="conteneur leftmenu">
+<div id="limiteur">
+    <div class="coleft">
+        <div class="col1wrap">	
+            <div class="col1">
+				<div class="boite">				
+				<div class="sus"><div></div></div>
+					<div class="contenu">
+			<h2><multi>[en] This site is referenced here[fr]Ce site est référencé ici[es]es sitio està referenciado aqui[de]Diese Web Seite ist hier vermerkt</multi></h2>
+			<p>
+			
+<div>
+<a href="http://www.cherchons.be" target="_blank">Annuaire Belgique</a> 
+</div>
+<div>
+<a href="http://www.directoryworld.net/" target="_blank">Directory World</a>
+</div>
+<div>
+<a href="http://www.avis-site.com">Annuaire gratuit</a>
+</div>
+
+			</p>
+			</div><!-- fin contenu-->			
+			</div><!-- fin boite-->
+			</div><!-- Col1 1 end -->
+			</div><!-- col1wrap end -->
+		[(#REM) Menu de navigation laterale ]
+			<div class="col2"><!-- Column 2 start -->
+				<div class="boite">				
+				<div class="sus"><div></div></div>
+			[(#REM) Menu de navigation par rubriques ]
+		<INCLURE{fond=inc/inc-rubriques_alter}>
+
+			</div><!-- fin boite-->
+			</div><!-- Column 2 end -->
+
+		</div>
+		<div class="bottom "> <div></div></div>
+
+    </div>	<!-- coleft end -->
+		<br class="nettoyeur" />    
+    </div>
+</div><!-- fin conteneur leftmenu -->
+<br class="nettoyeur" />    
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,786 @@
+/*  ------------------------------------------
+/*  Correction des styles HTML par defaut
+/*  ------------------------------------------ */
+body {
+        margin:auto;
+        padding:0;
+        border:0;
+        			/* This removes the border around the viewport in old versions of IE */
+
+        min-width:900px; 
+	max-width:1200px;					/* The min-width property does not work in old versions of Internet Explorer */
+	font-size:81.5%;		
+background:#E8E5E5;
+color: #3a3a3a;
+  } 
+  
+#page{
+width:100%;
+margin:auto;	
+}
+
+
+img, table { margin: 0; padding: 0; border: none; }
+h1, h2, h3, h4, h5, h6 { margin: 1em 0; padding: 0; font-size: 1em; font-weight: bold; }
+p {margin:0.5em 0.8em 0.5em 0; padding:0;}
+
+#entete h1{
+float: left;
+position:absolute;
+left:250px;
+font-size:3em;color: #87A235;text-align:center;}
+
+h2, h2.titre {font-size:1.4em;
+ color: #769C2F;margin:0;
+ }
+ 
+h3 a, h3, li.titre h3, h3.spip{
+clear:left;
+font-size:1.1em;
+margin-bottom:0.5em;
+color: #3e3535;
+}
+h3.spip{text-align:left;} 
+.contenu h3{font-size:1.2em;}
+ 
+h4{ clear:both;font-size:1em;margin-bottom:0.3em; }
+li h4{clear:none; }
+
+ul{	list-style:square; margin-left:1.9em; padding:0.3em;}
+
+
+
+
+	
+/*  ------------------------------------------
+/*  Disposition a l'ecran des blocs principaux
+/*  ------------------------------------------ */
+
+.conteneur {
+position:relative;		/* This fixes the IE7 overflow hidden bug and stops the layout jumping out of place */
+clear:both;
+float:left;
+width:100%;			/* width of whole page */
+overflow:hidden;	/* This chops off any overhanging divs */
+margin:0;
+padding:0;
+background:#e1d349;	
+}
+
+/* 2 column left menu settings */
+.leftmenu {
+background: white;
+
+overflow:hidden;				    
+	}
+	
+/* 3 Column settings */
+.leftmenu .coleft{
+float:left;
+width:200%;
+position:relative;
+left:215px;	
+    }
+
+.leftmenu .col1wrap {
+float:right;
+width:50%;
+position:relative;
+right:215px;
+padding-bottom:1em;  
+	}
+	
+.leftmenu .col1 {
+margin:0 0px 0 215px;
+position:relative;
+right:100%;
+overflow:hidden;
+	    	}
+	
+.leftmenu .col2 {
+float:left;
+width:200px;
+position:relative;
+right:215px;
+    }	
+/* Affichage pour les petits ecrans (type 400 x 300) */
+@media handheld { div#page, div#conteneur{ width: auto; } }	
+
+/* Boites rond principales */
+
+/* propri�t�s communes � l'ensemble des 4 coins */
+.col1wrap .boite, .col2 .boite  {width:100%; background:white;
+}
+
+
+/* propri�t�s sp�cifiques � chaque coin */
+.boite{	background:white;}
+
+.boite .sus, .boite .sous {
+width:100%;
+height:16px;
+background:url(images/white_right_top.png);
+background-repeat: no-repeat;
+background-position:top right;
+}
+
+.boite .sus div, .boite .sous div{
+width:100%;
+height:16px;
+background: url(images/white_left_top.png);
+background-repeat: no-repeat;
+background-position:top left;
+}
+
+.boite .sous {
+background: url(images/white_right_bottom.png);
+background-repeat: no-repeat;
+background-position:bottom right;	
+}
+
+.boite .sous div {
+background:url(images/white_left_bottom.png);
+background-repeat: no-repeat;
+background-position:bottom left;
+}
+
+#entete {
+margin:0;
+padding:0;
+height:174px;
+width:100%;
+background: url(images/banner12.png);
+background-repeat: no-repeat;
+background-position:top left;
+}
+ 
+
+#banner .boite{
+height:174px;
+background: url(images/banner_right.png);
+background-repeat: no-repeat;
+background-position:top right;
+}
+
+
+.bottom {
+float: right;
+position:relative;
+width: 100%;
+right: 0px;
+background: url(images/white_right_bottom.png);
+background-repeat: no-repeat;
+background-position:bottom right;
+height:16px;
+margin:0;
+padding:0;
+margin-bottom:2px;
+}
+
+.bottom div {
+position:relative;
+width: 100%;
+ height:16px;
+left: 0px;
+background: url(images/white_left_bottom2.png);
+background-repeat: no-repeat;
+background-position:bottom left;
+margin:0;
+padding:0;
+}
+
+/* Entete */
+ul.menuhor {
+padding:0;
+margin:0 0 0 230px ;
+position:absolute;
+top: 135px; 
+}  
+	    
+	
+ul.menuhor li{
+list-style:none;
+font-size:1em;
+font-weight:  bold ; 
+display: inline;  
+margin:0px;
+padding:0px;
+letter-spacing:0.8px;
+	}
+	
+ul.menuhor li a {
+text-align:center;
+text-decoration:none;
+margin:0 0 0 -0.1em;
+padding:10px 8px 10px 8px;
+color:#769C2F;
+line-height:37px;
+}
+	
+
+ul.menuhor li a:hover,ul.menuhor li a:active,
+	ul.menuhor li.on a{
+color:black;
+background:transparent url(images/ligne_bouton_activ.png);
+background-repeat: repeat-x;
+background-position: top left;
+background-attachment: scroll;
+font-weight:bold;
+	}
+	    
+#entete a { text-decoration: none; }
+#entete .formulaire_recherche { float: right; position:relative; right:5px;
+ }
+ 
+.boite_langue {	width:250px;margin:6px 10px 0 0;float: right;}
+
+.menu_langues {
+display:none;
+margin:0;
+padding:0;
+float: right;
+font-size:bold;font-weight:bold;font-size:0.9em;
+}
+body#main-body .menu_langues {
+display : inline;
+}
+
+
+ul.menu_langues li{
+display: inline;		
+}
+
+ul.menu_langues li a{
+font-size:0.7em;
+color:black;	
+}
+
+.recherche{
+margin-top:10px;
+
+}
+
+
+/* Fil d'Ariane */
+#hierarchie {
+position:relative;
+text-align:left;
+margin: 0.5em 0 0.5em 250px;	
+font-size: 0.77em;
+color:black;
+font-weight:bold;	
+	 }
+
+/* Pied de page */
+#pied {
+clear:both;
+width: 100%;
+float:left;
+position: relative;
+bottom:0px;
+background: #ffffff ;
+padding:0;
+text-align: center;
+margin:0.5em 0 0 0;
+}
+	 
+#pied small { font-size: 0.77em; }
+#pied img { vertical-align: bottom; }
+
+
+/* Espaceur de blocs */
+.nettoyeur { clear: both; margin: 0; padding: 0; border: none; height: 0; line-height: 1px; font-size: 1px; }
+
+/* Non visible a l'ecran */
+.invisible { position: absolute; top: -3000em; height: 1%; }
+
+
+/*  ------------------------------------------
+/*  Typographie generale du site
+/*  ------------------------------------------ */
+
+/* Typo pour les menus et la navigation */
+body,.formulaire_spip {
+	font-family: Verdana, Tahoma, Arial, sans-serif; }
+
+/* Typo pour le contenu */
+#col1 {
+	font-family: "Trebuchet MS", Helvetica, sans-serif; }
+
+/* Typo pour les citations et extraits introductifs */
+q, blockquote, .liste-articles li .texte, h3.spip, .voirskel {
+	font-family: Georgia, Times, serif; }
+
+
+/*  ------------------------------------------
+/*  Habillage des menus et de la navigation
+/*  ------------------------------------------ */
+
+/*  Habillage general des menus de navigation
+---------------------------------------------- */
+.menu_lat ul {list-style:none;
+margin:0;
+padding:0;	
+}
+
+.menu_lat li {
+background: url(images/navigation-background.png);
+background-repeat: no-repeat;
+background-position: top;
+height:40px;
+line-height:40px;
+padding-left:5px; 
+}
+
+.menu_lat li.on {
+background-color:#769c2f;
+background-position: top left;
+margin-right:-15px;   
+}
+
+.menu-titre {
+padding: 0.2em 0.4em;
+border-bottom: 1px dotted #CCC;
+font-weight: bold;
+background:#eaf3de;
+background:#F7F7FF ;
+background: #f9f9f9 ;
+}
+
+#limiteur{
+background:transparent url(images/limiteur.png);
+background-repeat: repeat-y;
+background-position: left;	
+width: 100%;
+padding-bottom: -26px;margin-bottom: -20px;
+overflow: hidden;
+position: relative;
+}
+/*  ------------------------------------------
+/*  Habillage du contenu
+/*  ------------------------------------------ */
+
+
+
+/*  Mise en forme des textes du contenu
+---------------------------------------------- */
+.contenu{
+	margin:0 1.8px 0 1.8em;
+	}
+.margin{margin-right:250px;}
+
+.page_sommaire .contenu {margin-right:0px;}
+
+.chapo {
+	margin-bottom: 1.5em;
+	font-weight: bold;
+	line-height: 1.4em; }
+
+.lien {
+	background: #EEE;
+	margin: 1em;
+	margin-bottom: 1.5em;
+	padding: 0.82em;
+	border: 1px solid #CCC;
+	font-size: 0.82em;
+	font-weight: bold; }
+	
+.texte { color: #000; font-size: 0.96em; }
+
+.ps, .notes {
+	margin-top: 1.4em;
+	padding-top: 2px;
+	border-top: 2px solid #CCC; }
+.ps { font-size: 0.82em; }
+.notes { clear: both; font-size: 0.77em; }
+.ps h2, .notes h2 { font-size: 1.19em; font-weight: bold; }
+.thumbnails{
+	float:left; margin:10px; width :140px;
+	
+}
+
+.window{
+float:right;
+ width:220px;
+ font-size:0.8em;
+ position:relative;
+ top:40px;
+ right:10px;
+ margin:0px 0 5px 20px;
+ 	border: 10px solid  #769c2f;
+	border-radius: 20px ;	
+}
+.art-synd .window{position:absolute;}
+.window h3 {
+	margin:5px 0;
+	padding:0;
+	text-align:center;
+	color: black;	
+}
+
+.window ul{
+
+margin:0 1px 0 0px;
+padding:0px 0px 10px 0px;		
+}
+.window ul li{
+background:white;
+	padding:2px 4px;
+	list-style:none;
+	margin:0 1em 0 0.98em;			
+}
+
+div.blocs_destination{
+display: inline;
+background:white;	
+}
+.thump, .news{
+	float:right;
+	position:relative;
+	width:150px;
+	margin:5px 20px 5px 50px;
+	border: 4px solid  #769c2f;
+	border-radius: 10px 10px;
+	padding:5px;
+}
+.news{border: 4px solid  #E8E5E5;}
+
+.devs {border: 4px solid #E3CA3E;}
+
+
+
+.thump div, .news div{
+   line-height: 11px;
+    margin-bottom: 5px;}
+.thump{text-align:center;}
+.thump img {text-align:center;	
+}
+
+.news{clear:right; float:right;position:relative;width:150px;margin:5px 20px 5px 50px;
+
+}
+
+
+.thump h3, .news h3{
+	text-align:center;
+	margin: 0;
+	border-bottom: 
+	1px dashed  #769c2f;
+	padding:0 0 0.1em 0;
+	color:black;	
+}
+.thump h4, .news h4 {padding:0;margin:0.2em 0 0 0;clear:none;
+}
+.news h4{
+	font-size:10px;	
+}
+
+
+h3 a.cs_glossaire{
+font-size:1em;
+color: #3e3535;	
+}
+
+/*  Portfolio
+---------------------------------------------- */
+#documents_portfolio {
+	clear: both;
+	margin-top: 1.4em;
+	padding-top: 2px;
+	border-top: 2px solid #CCC; }
+#documents_portfolio h2 { margin-bottom: 0.4em; font-size: 0.88em; font-weight: bold; }
+
+#document_actif { margin-top: 1em; }
+
+/*  Listes de documents joints (a un article ou une rubrique)
+---------------------------------------------- */
+#documents_joints {
+	margin-top: 1.4em;
+	padding-top: 2px;
+	border-top: 2px solid #CCC; }
+#documents_joints h2 { margin-bottom: 0.4em; font-size: 0.88em; font-weight: bold; }
+#documents_joints ul { margin: 0; padding: 0; list-style: none; }
+#documents_joints li { margin-bottom: 0.4em; }
+#documents_joints li .spip_doc_titre {}
+#documents_joints li .spip_doc_titre small { font-weight: normal; }
+#documents_joints li .spip_doc_descriptif {}
+
+/* Listes d'articles et extraits introductifs
+----------------------------------------------- */
+.liste-articles ul,.syndic ul { margin: 0em; padding: 0; list-style:square;
+ }
+.liste-articles li { margin-bottom: 1em; clear: both; }
+.syndic ul li {margin-left:1em;	
+}
+li.titre{list-style:none;clear:both;
+}
+
+
+.liste-articles li .titre {
+	font-size: 1.03em;
+	font-weight: bold; }
+
+.liste-articles li .spip_logos {
+	float: right;
+	margin-left: 16px;
+	margin-bottom: 16px;
+	clear: right; }
+
+.liste-articles li p { margin: 0; padding: 0; }
+
+.liste-articles li .enclosures {
+	float: right;
+	text-align: right;
+	max-width: 60%;
+	margin: 0; }
+
+.liste-articles li small {
+	display: block;
+	font-size: 0.71em; }
+
+.liste-articles li .texte {
+	margin-top: 5px;
+	margin-bottom: 2em;
+	border: 1px solid #CCC;
+	padding: 0.9em;
+	font-size: 0.82em;
+	line-height: 1.4em; }
+
+.pagination { font-size: 0.90em; }
+
+.menu_porfolio{
+	margin-bottom:5px;
+	
+}
+
+
+.menu_porfolio a{
+	background-color:#769C2F;
+	color:#FFFFFF;
+	font-weight:bold;
+	padding:5px;
+	border:#ffffff 1px solid;
+	border-radius: 10px;
+	text-transform: uppercase;
+	
+}
+
+.menu_porfolio a.on, .menu_porfolio a:hover, .menu_porfolio a:active{background-color:#E3CA3E; color:black;
+text-decoration: none;}
+
+.syndic_simple{clear:left;	float: left;position:relative;}
+.syndic_simple ul {
+list-style:none; margin:0 10px 0 0;}
+
+.features{position:relative}
+
+ul.features{list-style:none;float:left;margin-left:20px; width:250px;}
+
+.titre_site span.title{cursor:pointer;color;border-bottom: 1px dotted gray;
+    font-size: inherit;}
+
+.titre_site:hover span.title:hover{border-bottom: 0px dotted gray;}
+
+.titre_site span.show_hover{display:none;}
+
+.titre_site:hover span.show_hover{
+	display:block;
+	position:absolute;
+	left:270px;
+	bottom:30px;
+	background-color:#E8E5E5;
+	color:black;
+	padding:5px;
+	width:200px;
+	border :1px solid #E8E5E5;
+	border-radius:10px;
+	}
+/*  ------------------------------------------
+/*  Habillage specifique du plan du site
+/*  ------------------------------------------ */
+
+.page_plan .cartouche { display: none; }
+
+.page_plan #contenu h2 {
+	clear: both;
+	background: #EEE;
+	border: 1px solid #CCC;
+	padding: 0.5em;
+	margin-bottom: 1em;
+	font-weight: bold;
+	text-align: center; }
+
+.page_plan #contenu .contre-encart ul {
+	display: block;
+	clear: left;
+	margin-top: 0;
+	margin-bottom: 1em;
+	padding-top: 0; }
+.page_plan #contenu .contre-encart li {}
+
+/*  ------------------------------------------
+/*  Habillage des formulaires
+/*  ------------------------------------------ */
+
+.formulaire_spip { text-align: left; font-size: 0.77em; }
+.formulaire_spip p { margin: 0.5em 0; padding: 0; }
+
+.formulaire_spip fieldset {}
+.formulaire_spip legend {}
+
+.formulaire_spip label {}
+.formulaire_spip .forml { width: 99%; font-family: inherit; font-size: inherit; }
+
+/* Boutons */
+.spip_bouton { text-align: right; }
+.spip_bouton input { float: right; }
+
+/* Reponse du formulaire */
+.reponse_formulaire { font-weight: bold; color: #e86519; }
+fieldset.reponse_formulaire { border-color: #e86519; font-weight: normal; }
+
+/* Previsualisation du message */
+fieldset.previsu { padding: 1em; }
+
+/* Formulaire de login au forum */
+.formulaire_login_forum .forml { width: 12em; }
+.formulaire_login_forum .spip_logos { float: right; padding-left: 10px; }
+
+/* Choix des mots-clefs */
+ul.choix_mots { float: left; width: 47%; margin: 0; padding: 0; list-style: none; } 
+ul.choix_mots label { display: inline; }
+
+/* Formulaire de recherche */
+.formulaire_recherche { width: 12em; text-align: left; line-height:normal;}
+.formulaire_recherche label { display: none; }
+
+.form_4 {
+border-left:3px solid #769C2F;
+color:black;
+font-family:Verdana,Arial,Helvetica,sans-serif;
+font-weight:normal;
+margin:0 0 16px;
+padding:6px;
+}
+.form_4 fieldset{
+border-style:dashed none none solid;
+border-width:0px;
+margin:0.5em 0;
+padding:0.4em 0.4em 0.4em 1em;
+}
+.form_4  .forml, .spip_forms .fondl {
+background:#EDF4E4 none repeat scroll 0 0;
+color:#4A4336;
+width:85%;
+}
+.form_4  .forml, .spip_forms .formo {
+border-color:#769C2F #A1D640 #B4EE47 #BAF74A  ;
+border-style:solid;
+border-width:1px;
+font-size:1em;
+padding:0.25em;
+width:85%;
+}
+.form_4 form .forml-focus,.spip_forms form input.forml-focus:focus,.spip_forms form textarea.forml-focus:focus,.forml-focus{border-bottom:solid 1px #769C2F;border-right:solid 1px #A1D640;border-top:1px solid #B4EE47;border-left:1px solid #BAF74A;background:#F4FBEA;color:#433817;font-weight:normal;font-size:1em;padding:.25em;width:85%;}
+
+.form_4 legend{font-weight:bold;}
+
+
+/*  ------------------------------------------
+/*  Habillage des forums
+/*  ------------------------------------------ */
+
+.forum-repondre, .forum-decompte {
+	clear: both;
+	margin-top: 2.5em;
+	padding-top: 2px;
+	border-top: 2px solid #CCC;
+	font-size: 0.88em;
+	font-weight: bold; 
+}
+
+/* * Habillage des forums */
+ul.forum { display: block; clear: both; margin: 0; padding: 0; }
+ul.forum, ul.forum ul { list-style: none; }
+.forum-fil { margin-top: 1.5em; }
+.forum-fil ul { display: block; margin: 0; padding: 0; margin-left: 1em; }
+.forum-chapo .forum-titre, .forum-chapo .forum-titre a { display: block; margin: 0; padding: 0; font-weight: bold; text-decoration: none; color: #333; }
+.forum-chapo small {}
+.forum-texte { margin: 0; padding: 0.5em 1em 0 1em; color: #333; font-size: 0.82em; }
+.forum-texte .forum-lien {}
+.forum-texte .forum-repondre-message { margin: 0; padding: 1px 0; text-align: right; }
+
+/* Boite d'un forum : eclaircissement progressif des bords */
+ul .forum-message { border: 1px solid #666; margin: 0; padding: 0; margin-bottom: 1em; }
+ul ul .forum-message { border: 1px solid #A4A4A4; }
+ul ul ul .forum-message { border: 1px solid #B8B8B8; }
+ul ul ul ul .forum-message { border: 1px solid #CCC; }
+ul ul ul ul ul .forum-message { border: 1px solid #E0E0E0; }
+ul ul ul ul ul ul .forum-message { border: 1px dotted #E0E0E0; }
+
+/* Boite de titre d'un forum : mise en couleur selon la profondeur du forum */
+ul .forum-chapo { border: none; border-bottom: 1px dotted #B8B8B8; margin: 0; padding: 3px 6px 2px 6px; font-size: 0.88em;background: #769c2f ;	}
+ul ul .forum-chapo {background: #83ae34 ;	 }
+ul ul ul .forum-chapo {background: #92c23a ;	 }
+ul ul ul ul .forum-chapo {background: #abe344 ;	 border-bottom: 1px dotted #E0E0E0; }
+ul ul ul ul ul .forum-chapo { background: #FFF; }
+
+/*  ------------------------------------------
+/*  Habillage des petitions
+/*  ------------------------------------------ */
+
+#signatures { clear: both; font-size: 0.77em; }
+
+#signatures h2 {
+	padding: 0.5em;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold; }
+
+#signatures table { width: 100%; margin: 1em 0; }
+#signatures thead { display: none; } /* On n'affiche pas les titres du tableau */
+
+#signatures td.signature-date {
+	background: #E4F0F0;
+	padding: 0.5em;
+	white-space: nowrap; }
+
+#signatures td.signature-nom {
+	background: #ECF4F4;
+	padding: 0.2em;
+	text-align: center;
+	font-weight: bold; }
+
+#signatures td.signature-message {
+	background: #F4F8F8;
+	padding: 0.4em;
+	font-size: 0.96em; }
+
+/*  ------------------------------------------
+/*  Couleurs des liens
+/*  ------------------------------------------ */
+a, a.spip_in { text-decoration: none; color:#4E700D; }
+a:hover { text-decoration: underline; color:black;
+}
+
+/*  ------------------------------------------
+/*  Formulaires
+/*  ------------------------------------------ */
+#formulaire_menu_lang  {float:right;}
+#formulaire_menu_lang select {width:100px;}
+.formulaire_ecrire_auteur fieldset{border:0;width:90%}
+
+.page_rubrique .spip_logos {float:right;	
+}
+
+.spip_logos, .page_rubrique .thumbnails .spip_logos{te
+	float:right;
+	margin: 10px;
+border:4px solid #769C2F;
+}
+
+.thump .spip_logos{float:none;clear:both;}
+	
+blockquote.spip {float:right;}
+
+.forum-message blockquote.spip {float:none;font-style: italic;}

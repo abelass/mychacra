@@ -1,0 +1,10 @@
+<div class="formulaire_spip formulaire_recherche" id="formulaire_recherche">
+<form action="[(#ENV{lien})]" method="get" class='noajax'><div>
+	[(#ENV{lien}|form_hidden)]
+	[<input type="hidden" name="lang" value="(#ENV{lang})" />]
+	<label for="recherche"><:info_rechercher:></label>
+	<input type="text" class="forml" size="10" name="recherche" id="recherche"[ value="(#ENV{recherche}|sinon{<:info_rechercher:>})"] accesskey="4" />
+	<input type="image" src="#CHEMIN{rechercher.png}" class="bouton" value="<:info_rechercher:>" />
+</div>
+</form>
+</div>

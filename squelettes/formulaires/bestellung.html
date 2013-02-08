@@ -1,0 +1,78 @@
+<h2>Bestellen Sie heute Ihr Mittagessen für morgen!</h2>
+
+
+
+
+<br>
+<p>Für <span class="green">[(#DATE|affdate{nom_jour})] den [(#DATE|affdate)]</span>
+
+haben wir folgende Menüs:</p>
+
+<p class="kleiner orange tab"><b>* Bestellungen heute bis 22 Uhr
+
+<br>* Abholungen morgen von 12.30 bis 14.00 Uhr </b>
+
+
+
+<div class="box">
+	<div class="ro">
+		<div class="lo">
+			<div class="ru">
+				<br/>	
+				[<p class='error'>(#ENV*{message_erreur})</p>]
+				<div class="lu">
+				#SET{limit,100}
+				[(#ENV**{message_ok}|oui)#SET{limit,0}]
+					
+				
+					<form action='#ENV{action}' method='post'>
+					<div class="hidden">
+					[<span class='error'>(#ENV**{erreurs}|table_valeur{robot})</span>]
+						<input type="text" name="test"/>
+					</div>
+						#ACTION_FORMULAIRE{#ENV{action}}	
+														
+								
+								<h5 class="#EDIT{titre}"> #TITRE</h5>
+								<p class="#EDIT{texte}">#TEXTE</p>
+								[<span class='error'>(#ENV**{erreurs}|table_valeur{commande})</span>]
+								<ul class="bestellung">
+									<li><span class="orange">Wie viele Portionen von unserem #TITRE möchten Sie bestellen?</span><br/>
+										<label for="portionen_#ID_ARTICLE">
+										Ich bestelle&nbsp;
+										<input class="anzahl-portionen" id="portionen_#ID_ARTICLE" name="portionen_#ID_ARTICLE" value="#ENV{portionen_#ID_ARTICLE}" type="text"/> Portionen.</label></li>
+								</ul>
+								
+						<h5>Ihre Daten</h5>
+								<ul class="bestellung">
+									<li><label for="name">Name:</label>
+									[<span class='error'>(#ENV**{erreurs}|table_valeur{name})</span>]
+										<input class="name" id="name" name="name" value="#ENV{name}" type="text"/>
+										<label for="vorname">Vorname:</label>
+										<input class="vorname" id="vorname" name="vorname" value="#ENV{vorname}" type="text"/>
+									</li>
+									<li><label for="email">E-Mail:</label>
+									[<span class='error'>(#ENV**{erreurs}|table_valeur{email})</span>]
+										<input class="email" id="email" name="email" value="#ENV{email}" type="text"/>
+										<label for="telefon">Telefon:</label>
+										<input class="telefon" id="telefon" name="telefon" value="#ENV{telefon}" type="text"/></li>
+									<li><label for="bemerkungen">Bemerkungen:</label>
+										<textarea name="bemerkungen" id="bemerkungen"  class="bemerkungen" rows="3" cols="5">#ENV{bemerkungen}</textarea></li>	
+									<li>
+										<input class="senden" name="confirm" value="Bestellung absenden" type="submit"/></li>	
+								</ul>
+					</form>
+								
+					
+					<ul class="reponse">
+						<li>
+							[(#ENV**{message_ok}|sinon{'Leider sind momentan sind keine Bestellungen möglich.'})]
+						</li>
+					</ul>
+					<br/>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- end box -->

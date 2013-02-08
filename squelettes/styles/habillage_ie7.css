@@ -1,0 +1,14 @@
+body {
+
+	width: 1200px; /* sets max-width for IE */    
+
+  } 
+
+	
+ul.menuhor {
+position:relative;
+top:-40px;
+left:230px;
+margin:0;
+width:500px;
+}

@@ -1,0 +1,107 @@
+<BOUCLE_site(SITES){id_syndic}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+[(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
+<BOUCLE_lang(RUBRIQUES){id_rubrique}><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"></BOUCLE_lang>
+<head>
+<title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="description" content="[(#DESCRIPTIF|couper{300}|textebrut)]<B_mots_cles>, <BOUCLE_mots_cles(MOTS) {id_syndic} {', '}>#TITRE</BOUCLE_mots_cles>" />
+<INCLURE{fond=inc/inc-head}>
+<meta name="robots" content="none" />
+</head>
+
+<body class="page_site">
+	<div id="page">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}{id_rubrique}>
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/?lang=#ENV{lang}"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#NOM_SITE|couper{80})]</div>
+<div class="conteneur leftmenu">
+<div id="limiteur">
+    <div class="coleft">
+        <div class="col1wrap">	
+            <div class="col1">
+				<div class="boite">				
+				<div class="sus"><div>&nbsp;</div></div>
+					<div class="contenu">		[(#REM) Contenu principal : affichage du site ]
+			<div >
+				<h2 class="#EDIT{nom_site} titre">#NOM_SITE</h2>
+				<div class="thumbnails">[(#LOGO_SITE||image_reduire{120,90})]</div>
+				[<p class="#EDIT{url_site} soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
+			</div>
+
+			[<div class="#EDIT{descriptif} texte">(#DESCRIPTIF)</div>]
+
+			[(#REM) Articles issus de la syndication ]
+			<B_articles>
+			<div class="syndic">
+				#ANCRE_PAGINATION
+				<h3  class="menu-titre"><:news_site:></h3>
+				<ul>
+					<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse} {pagination 10}{lang=#ENV{lang}}>
+					<li>
+						<h4 class="titre"><a href="#URL_ARTICLE"  target="_blank">#TITRE</a></h4>
+						[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+						<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
+						[<div class="texte">(#DESCRIPTIF|image_reduire{300})
+						<br class="nettoyeur" /></div>]
+					</li>
+					</BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_articles>
+					<B_syndic_alter>
+			<div class="syndic">
+				#ANCRE_PAGINATION
+				<h3  class="menu-titre"><:news_site:></h3>
+				<ul>
+					<BOUCLE_syndic_alter(SYNDIC_ARTICLES)  {id_syndic}  {par date}{inverse} {pagination 10}>
+					<li>
+						<h4 class="titre"><a href="#URL_ARTICLE"  target="_blank">#TITRE</a> [#LANG]</h4> 
+						[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+						<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
+						[<div class="texte">(#DESCRIPTIF|couper{100}|image_reduire{300})
+						<br class="nettoyeur" /></div>]
+					</li>					</BOUCLE_syndic_alter>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+					</B_syndic_alter>				
+			<//B_articles>
+			[<div class="notes"><h3><:info_notes:></h3>(#NOTES)</div>]
+			</div><!-- fin contenu-->
+			</div><!-- fin boite-->
+			</div><!-- Col1 1 end -->
+			</div><!-- col1wrap end -->
+		[(#REM) Menu de navigation laterale ]
+			<div class="col2"><!-- Column 2 start -->
+				<div class="boite">				
+				<div class="sus"><div>&nbsp;</div></div>
+			[(#REM) Autres sites web ]
+			<B_sites>
+			<div class="menu_lat">
+				#ANCRE_PAGINATION
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_sites(SITES) {par nom_site} {pagination 20}{tout}>
+					<li[ class="(#EXPOSE)"]><a href="[(#ID_SYNDIC||generer_url_entite{site,'','',#CONNECT}|parametre_url{lang,#LANG})]">[(#NOM_SITE|couper{25})]</a></li>
+					</BOUCLE_sites>
+				</ul>
+			</div>
+			</B_sites>
+
+
+			</div><!-- fin boite-->
+			</div><!-- Column 2 end -->
+
+		</div>
+		<div class="bottom "><div>&nbsp;</div></div>
+    </div>	<!-- coleft end -->
+<br class="nettoyeur" />    
+    </div>
+</div><!-- fin conteneur leftmenu -->
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+</body>
+</html>
+</BOUCLE_site>
