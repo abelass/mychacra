@@ -1,8 +1,0 @@
-<div class="menu_lat">
-	<ul>
-	<BOUCLE_cat(MOTS) {par multi titre}{id_groupe=8}>
-		<li[ class="(#EXPOSE)"]><a href="[(#URL_RUBRIQUE|parametre_url{id_mot,#ID_MOT}|parametre_url{lang,#LANG})]">[(#TITRE|couper{25})]</a></li>
-		<BOUCLE_art(ARTICLES){id_rubrique}{id_mot}{0,1}{lang}>&nbsp;</BOUCLE_art>
-	</BOUCLE_cat>
-	</ul>
-</div>
