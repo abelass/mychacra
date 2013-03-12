@@ -1,0 +1,29 @@
+
+<div id="pied">
+					<div class="boite">
+				<div class="sus"> <div> &nbsp;</div></div>
+<small>
+	<a href="#URL_PAGE{backend}" title="<:syndiquer_site:>"><img src="#CHEMIN{prive/themes/spip/images/rss-16.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" />&nbsp;RSS&nbsp;2.0</a>
+	| <a href="[(#URL_PAGE{plan}|parametre_url{lang,#LANG})]"><:plan_site:></a> [
+(#SESSION{id_auteur}|?{' '})| <a href="#URL_LOGOUT"><:icone_deconnecter:></a>
+][(#SESSION{id_auteur}|?{'',' '})| <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" class='login_modal'><:lien_connecter:></a>][
+(#AUTORISER{ecrire})| <a href="ecrire/"><:espace_prive:></a>
+]
+	| <a href="http://www.spip.net/" title="<:site_realise_avec_spip:>">[(#CHEMIN_IMAGE{spip.png}|balise_img)]</a>
+</small>
+
+			<div class="sous"><div>  &nbsp;</div></div>
+			</div><!-- fin boite-->
+</div>
+
+<script type="text/javascript">
+	var pkBaseURL = (("https:" == document.location.protocol) ? "https://#CONFIG{piwik/urlpiwik}/" : "http://#CONFIG{piwik/urlpiwik}/");
+	document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+	try {
+		var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", #CONFIG{piwik/idpiwik});
+		piwikTracker.trackPageView();
+		piwikTracker.enableLinkTracking();
+	} catch( err ) {}
+</script>

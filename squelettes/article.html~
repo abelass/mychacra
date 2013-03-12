@@ -1,0 +1,90 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="description" content="[(#INTRODUCTION|couper{300}|textebrut)]<B_mots_cles>, <BOUCLE_mots_cles(MOTS) {id_article}{', '}>#TITRE</BOUCLE_mots_cles>" />
+<INCLURE{fond=inc/inc-head}>
+</head>
+
+<body class="page_article">
+	<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}{env}>
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/?lang=#ENV{lang}"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
+	
+<div class="conteneur leftmenu">
+<div id="limiteur">
+    <div class="coleft">
+        <div class="col1wrap">	
+            <div class="col1">
+				<div class="boite">				
+				<div class="sus"><div></div></div>
+					<div class="contenu [(#ID_RUBRIQUE|=={'7'}|?{'margin',''})]">
+				#DEBUT_SURLIGNE
+				[(#ID_RUBRIQUE|!={12}|?{
+				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+				<h2 class="#EDIT{titre} titre">#TITRE</h2>				
+				[(#LOGO_ARTICLE||image_reduire{200,200})]
+
+				#FIN_SURLIGNE
+
+
+			#DEBUT_SURLIGNE
+			[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+
+			[<p class="#EDIT{hyperlien} lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>]
+			#FIN_SURLIGNE
+
+			<INCLURE{fond=inc/documents}{id_article}{env}/>
+			
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument lui passer SELF]
+			[(#PETITION|?{' '})
+				<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
+			]
+
+			[<div class="notes"><h3><:info_notes:></h3>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+			[(#REM) Forum de l'article ]
+			<a href="#forum" name="forum" id="forum"></a>
+			[<h2 class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></h2>]
+			<INCLURE{fond=inc/inc-forum}{id_article}>
+			[(#ID_RUBRIQUE|=={'7'}|?{' ',''})<div class="art-synd"><INCLURE{fond=inc/window/inc-art_rub}{id_rubrique}></div>]
+					</div><!-- fin contenu-->
+				</div><!-- fin boite-->
+
+	    </div><!-- Col1 1 end -->
+
+	</div><!-- col1wrap end -->
+		[(#REM) Menu de navigation laterale ]
+	    <div class="col2"><!-- Column 2 start -->
+				<div class="boite">				
+				<div class="sus"><div></div></div>
+			[(#REM) Menu de navigation par rubriques ]
+			[(#ID_RUBRIQUE|!={8}|oui)<INCLURE{fond=inc/inc-rubriques}{id_rubrique}>]
+			[(#ID_RUBRIQUE|=={8}|oui)<INCLURE{fond=inc/inc-menu_mots}{id_rubrique}{env}>]
+				,
+			#LOGIN_PUBLIC
+			
+			}
+			
+			)]
+				</div><!-- fin boite-->
+				</div><!-- Column 2 end -->
+
+	     </div>
+		<div class="bottom "> <div></div></div>
+    </div>	<!-- coleft end -->
+<br class="nettoyeur" />    
+    </div>
+</div><!-- fin conteneur leftmenu -->
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{id_article}>
+	</div>
+</body>
+</html>
+</BOUCLE_article_principal>

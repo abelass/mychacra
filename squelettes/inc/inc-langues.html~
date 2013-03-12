@@ -1,0 +1,17 @@
+<ul class="menu_langues">
+<B_Articles>
+<BOUCLE_Articles(ARTICLES){id_article}>
+	[(#REM) Inclure le modele des liens de traductions ]
+	#MODELE{article_traductions}
+</BOUCLE_Articles>
+</B_Articles>
+	[(#REM) on boucle sur les langues disponibles dans le public grâce à spip-bonux]
+	  [(#SET{langues,[(#CONFIG{langues_utilisees}|explode{','}|serialize)]})]
+              <BOUCLE_langue_possibles(POUR){tableau #GET{langues}}{'<li>|</li>'}>
+	        <li lang="#VALEUR" xml:lang="#VALEUR">
+	        	[(#ENV{lang}|=={#VALEUR}|non)<a href="[(#URL_ACTION_AUTEUR{'converser',#VALEUR&var_lang=#VALEUR,[(#SELF|parametre_url{lang,'','&'})]})]" >[(#VALEUR|traduire_nom_langue)]</a>]
+	        	[(#ENV{lang}|=={#VALEUR}|oui)[(#VALEUR|traduire_nom_langue)]]
+	        	</li>
+	       </BOUCLE_langue_possibles>
+<//B_Articles>	 
+</ul>

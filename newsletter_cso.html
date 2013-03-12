@@ -1,0 +1,366 @@
+#CACHE{0}
+#HTTP_HEADER{Content-Type: text/html}
+[(#REM)
+/**********************************************************
+* Ce squelette pour spip-listes    
+* Patron: nouveautes.html liste les dernieres nouveautes
+* Ce squelette affiche les articles et breves publies depuis la date passee en reference
+* Utilise une balise #DATE_MODIF_SITE
+* Precautions:                             
+* - ne pas envoyer des gabarits de plus de 10Ko
+* - ne pas placer de balises html <html><body> ni de fermeture </body></html>
+* ils seront ajoutes automatiquement a l'envoi du mail 
+* - mettre les style  CSS directement dans les balises pour etre sur qu'ils seront interpretes (meme par les webmails)
+* - les urls et liens images seront automatiquement converties en absolues
+*  ex. rubrique5.html -> http://www.monsite.org/rubrique5.html
+*
+* La balise suivante est utile pour generer un message vide (non envoye) si il n'y a pas de nouveautes depuis la date indiquee
+* [ Affichage ici (#DATE_MODIF_SITE|strtotime|>{[(#ENV{date}|strtotime)]}|?{' ',''})  Affichage ici ]
+*
+***********************************************************/
+]
+<style type="text/css">
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 90%;	
+	font-family: Arial, Helvetica, Verdana, Sans serif;
+	color:#486773;
+	
+}
+
+#newsletter {
+	width:100%;
+	margin:35px 0 0 0;
+	padding:0;
+}
+
+#newsletter td {
+	padding:0 20px;
+}
+
+#correctly {
+	padding: 10px 12px 0 0;
+	letter-spacing:0.1em;
+	text-align:right;
+}
+
+#correctly p {
+	margin:0;
+	padding:0;
+	font-size:80%;
+}
+
+#correctly a,
+#correctly a:link,
+#correctly a:visited {
+	text-decoration:underline;
+}
+
+#correctly a:hover, 
+#correctly a:focus, 
+#correctly a:active {
+	color:#f06;
+}
+
+.right {
+	text-align:right;
+}
+
+.right p {
+	font-size:80%;
+}
+
+.IntroParagraph {
+	font-size:90%;
+	border:1px solid #9c0;
+	margin:10px 0 40px 0;
+}
+
+ul.contentOverview {
+	float:left;
+	width:235px;
+	font-size:90%;
+	margin:10px 0 40px 0;
+}
+
+ul.contentOverview li {
+	list-style-type:none;
+	background:url([(#CHEMIN{styles/img/carre.gif})]);
+	background-position:top left;
+	background-repeat:no-repeat;
+	padding-left: 15px;
+	letter-spacing:0.02em;
+	line-height:180%;
+}
+
+.Paragraph {
+	font-size:90%;
+	border-top:1px dashed #9c0;
+	border-bottom:1px dashed #9c0;
+	margin-bottom:40px;
+}
+
+.photoTable {
+	margin:10px 0 10px -10px;
+	padding:0;
+}
+
+.photo {
+	font-size:80%;
+	text-align:center;
+	margin:0;
+	padding:0;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	margin: 10px;
+	padding-bottom:10px;
+	letter-spacing:0.02em;
+}
+
+p {
+	font-size: 1.2em/1.8em;
+	line-height:1.3em;
+	letter-spacing:0.02em;
+	margin-right:10px;
+}
+
+a, a:link, a:visited {
+	color:#486773;
+	text-decoration:underline;
+}
+
+a:hover, a:focus, a:active {
+	color:#f06;
+	text-decoration:underline;
+}
+
+h1 {
+	font-size: 200%;
+	color:#f06;
+	letter-spacing:0.04em;
+	font-weight:lighter;
+	margin-bottom:35px;
+}
+
+h2 {
+	font-size: 130%;
+	color:#f06;
+	font-weight:lighter;
+	letter-spacing:0.04em;
+}
+
+h3 {
+	font-size: 120%;
+	color:#f06;
+	font-weight:lighter;
+	letter-spacing:0.04em;
+}
+
+h3 a {
+	color:#f06;
+	text-decoration:none;
+}
+
+h3 a:link {
+	color:#f06;
+	text-decoration:none;
+}
+
+h3 a:visited {
+	color:#f06;
+	text-decoration:none;
+}
+
+h4 {
+	font-size: 120%;
+	font-weight:lighter;
+	margin-top:0;
+	margin-bottom:0;
+	padding-top:0;
+	padding-bottom:0;
+	letter-spacing:0.04em;
+}
+
+h5 {
+	font-size: 120%;
+	font-weight:lighter;
+	margin-top:0;
+	margin-bottom:0;
+	padding-top:0;
+	padding-bottom:0;
+	letter-spacing:0.04em;
+	color:#9c0;
+}
+
+h5 a {
+	color:#9c0;
+	text-decoration:none;
+}
+
+h5 a:link {
+	color:#9c0;
+	text-decoration:none;
+}
+
+h5 a:visited {
+	color:#9c0;
+	text-decoration:none;
+}
+
+.clear {
+	clear:both;
+	padding:0px;
+	margin:0px;
+	height:0px;
+}
+
+img {
+	border: none;
+}
+
+#footer  {
+	margin:0px;
+	padding: 0 0 20px 0;
+	color: #7f949d;
+	font-size:80%;
+	line-height:120%;
+	letter-spacing:0.02em;
+}
+
+#footer a,
+#footer a:link,
+#footer a:visited {
+	color: #7f949d;
+}
+
+#footer a:focus,
+#footer a:active,
+#footer a:hover {
+	color: #486773;
+}
+
+</style>
+
+<table id="newsletter" cellspace="0" cellpadding="0" border="0">
+	<tr>
+		<td width="380"><img src="http://www.agencemademoiselle.com/CSO/img/cso_logo_small_en.gif" width="380" height="72" border="0" /></td>
+
+			<BOUCLE_liste3(LISTES){id_liste IN 1,2,3}{lang}>
+					<td class="right"><h1>[(#TITRE|supprimer_numero)]</h1>
+				<BOUCLE_liste_newsletters3(COURRIERS){id_liste}{type=auto}{!par date}{0,1}>#SET{email,#EMAIL_ENVOI}
+<p><multi>[en]If the newsletter does not appear correctly[es]si este correo no se puede leer corectamente[fr]si ce courrier ne s'affiche pas correctement</multi>, <nobr><multi>[en]please click[es]por favor haga click[fr]veuillez clickez</multi> <a href="#URL_SITE_SPIP/spip.php?page=courrier&amp;id_courrier=[(#ID_COURRIER|plus{3})]"><multi>[en]here[es]aquí[fr]ici</multi></a></nobr></p>
+				</BOUCLE_liste_newsletters3>
+				
+</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<table cellspacing="0" cellpadding="0" border="0">
+			<tr>	
+		<B_titles_index>
+
+				<td valign="top"><ul class="contentOverview">
+					<h2><multi>[en]Index[es]Indice[fr]Indice</multi></h2>
+		<BOUCLE_titles_index(MOTS){id_groupe=8}>
+	 <B_articles_index>
+				<li><a href= "##ID_MOT">#TITRE</a></li>		
+	 <BOUCLE_articles_index(ARTICLES){id_mot}{age_relatif<0}{par date}{inverse}{lang}>
+	 </BOUCLE_articles_index>
+	 </B_articles_index>
+		</BOUCLE_titles_index>
+						</ul>
+				</td>
+		</B_titles_index>		
+				<td valign="top"><div class="IntroParagraph">
+
+	<p><:spiplistes:texte_explicatif:> 
+
+<a href="mailto:#GET{email,#EMAIL_WEBMASTER }">#GET{email,#EMAIL_WEBMASTER}</a>.</p>
+			<BOUCLE_liste4(LISTES){id_liste IN 1,2,3}{lang}>
+	<BOUCLE_compteur2(COURRIERS){id_liste}{type=auto}>	
+	</BOUCLE_compteur2>
+<p>Nr [(#TOTAL_BOUCLE|plus{1})][, (#DATE|affdate_mois_annee)]</p>
+	</B_compteur2>
+<p>Nr  1[, (#DATE|affdate_mois_annee)]</p>	
+		<//B_compteur2>
+			</BOUCLE_liste4>
+				</div</td>
+			</tr>
+			</table>
+		</td>
+		</tr>
+
+	
+		<BOUCLE_titles_art(MOTS){id_groupe=8}>
+
+	 <B_articles>
+	<tr>	 
+	<td colspan="2"><div class="Paragraph">
+	<h3><a name="#ID_MOT"></a>#TITRE</h3>
+
+	 <BOUCLE_articles(ARTICLES){id_mot}{age_relatif<0}{par date}{inverse}{lang}>
+
+	 [(#REM)Etablit des informations li�es aux auteurs]
+	 <BOUCLE_auteurs(AUTEURS){id_article}>#SET{bio,#BIO} #SET{logo,#LOGO_AUTEUR}</BOUCLE_auteurs>
+	 [(#REM)Etablit le pays]
+	 <BOUCLE_pays(MOTS){id_article}{id_groupe IN 1,2,3,4,5} >#SET{pays,#TITRE}</BOUCLE_pays>
+
+	 [(#REM)Definit les titres suivant mot cl�s]
+	 [(#REM)Definit les titres suivant mot cl�s]
+	 [(#ID_MOT|!=={'259'}|? {
+	 [(#ID_MOT|=={'261'}|
+	 ?{
+	 <h5>#TITRE</h5>,
+	 [(#ID_MOT|=={'260'}|
+	 ?{
+	 <h4><:spiplistes:news_from:> [(#GET{pays})]<br><small><:par_auteur:> [(#LESAUTEURS|supprimer_tags), ]<a href="#URL_ARTICLE"> #TITRE</a></small></h4>,
+	 <h4>[(#TITRE|supprimer_numero)]<br/><small>[(#DATE|affdate) - ] <:par_auteur:>  #LESAUTEURS</small></h4>
+	 }
+	 )]
+	 }
+	 )],
+	 <h4>[(#LESAUTEURS|supprimer_tags)]<br><small>[(#GET{bio}), ]<a href="#URL_ARTICLE">#TITRE</a></small></h4>
+	}
+	)]
+	
+	 [(#REM)Definit les textes suivant mot cl�s]
+	 
+	 [(#ID_MOT|!=={'259'}|?{[(#ID_MOT|!=={'184'}|?{
+	  [(#REM)Texte pour  News from the Five Continents, News Flash ]
+	 <p>#INTRODUCTION<br/>,
+	  [(#REM)Texte pour Update]
+	#TEXTE
+	 })],
+	  [(#REM)Texte pour Aword fom...]
+	 <table class="photoTable" cellspace="0" cellpadding="0" border="0">
+		<tr>
+			<td class="photo" valign="top">[(#GET{logo}|image_reduire{80,110})]<br>[(#LESAUTEURS|supprimer_tags)]</td>
+			<td valign="top">#INTRODUCTION
+})]
+	
+	 [(#REM)Definit la fin suivant mot cl�s]		
+	[(#ID_MOT|=={'260'}|?{<a href="#URL_ARTICLE"><:spiplistes:read_more:></a></p>,''})]
+	
+	 [(#ID_MOT|=={'259'}|?{<a style="padding-left:10px;" href="#URL_ARTICLE"><:spiplistes:read_more:></a><br/><br/></td>
+		</tr>
+	</table>,''})]	
+	 </BOUCLE_articles>
+	</div></td>
+	</tr>
+	 </B_articles>
+	 
+	</BOUCLE_titles_art>
+
+			</BOUCLE_liste3>
+			
+		<td colspan="2"><div id="footer">
+<:spiplistes:texte_pied:> <a href="mailto:#GET{email,#EMAIL_WEBMASTER}">#GET{email,#EMAIL_WEBMASTER}</a><br/>
+<br/><br/>

@@ -1,0 +1,63 @@
+#CACHE{86400}
+<BOUCLE_courrier(COURRIERS) {id_courrier}{tout}>
+	<BOUCLE_liste(LISTES){id_liste IN 3,4,5}{lang}>
+	<BOUCLE_compteur(COURRIERS){id_liste}{type=auto}{par date}>#SET{compteur#ID_COURRIER,#COMPTEUR_BOUCLE}</BOUCLE_compteur>
+	</BOUCLE_liste>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ]Nº #GET{compteur#ID_COURRIER}[ - ((#DATE|affdate_mois_annee))] - [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="description" content="Newsletter" />
+<INCLURE{fond=inc/inc-head}>
+</head>
+
+<body class="page_article">
+<div id="page-wrap">
+	<div id="inside">
+		
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}{id_rubrique}{id_article}>
+	
+		<div id="main-content">
+				<div id="ie-container">		
+	[(#REM) Fil d'Ariane ]
+			<div id="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
+
+			<div class="content">
+				<div class="twoColumnsRight">	
+<INCLURE {fond=inc/colonne_droite/inc-articles_relationnes} {id_article}>
+<INCLURE {fond=inc/colonne_droite/inc-derniers_messages}>
+<INCLURE {fond=inc/colonne_droite/inc-derniers_evenements}{id_mot=#ENV{id_mot}}>
+				</div><!-- end twoColumnsRight -->
+				
+		[(#REM) Contenu principal : contenu de l'article ]
+				<div class="twoColumnsLeft">	
+					<div class="leftMainParagraph">
+				#DEBUT_SURLIGNE
+
+
+	<h1>#TITRE -  Nº #GET{compteur#ID_COURRIER}[ - ((#DATE|affdate_mois_annee))] </h1>
+
+			
+				#FIN_SURLIGNE
+
+
+				#DEBUT_SURLIGNE
+				[<p class="#EDIT{texte} texte">(#TEXTE)</p>]
+				#FIN_SURLIGNE
+
+
+					</div > <!-- end leftMainParagraph -->
+				</div><!-- end twoColumnsLeft -->
+			</div><!-- end content -->
+			<div class="clear"></div>
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+				</div><!-- end ie-container -->
+		</div><!-- end main-content -->		
+	</div><!-- end inside -->	
+</div><!-- page-wrap -->
+</body>
+</html>
+</BOUCLE_courrier>

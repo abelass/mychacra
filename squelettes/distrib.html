@@ -1,0 +1,24 @@
+#CACHE{0}
+#HTTP_HEADER{Content-Type: application/x-javascript; charset=#CHARSET}
+
+<BOUCLE_article(ARTICLES){id_article}>
+document.write('<style>');
+document.write('#myGallery{width: 100px !important;}');
+document.write('</style>');
+document.write('<a href="#URL_SITE_SPIP/#URL_ARTICLE">#TITRE</a>');
+</BOUCLE_article>
+
+document.write('<p class="small_in_box" align="center">');
+document.write('<div id="myGallery">');
+<BOUCLE_doc (DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par titre} {doublons}>
+		document.write('<div class="imageElement">');
+		document.write('[<h3>Image (#COMPTEUR_BOUCLE) sur #TOTAL_BOUCLE[ - (#TITRE)]</h3>]');
+		document.write('[<p>(#DESCRIPTIF|?{#DESCRIPTIF,' '})</p>]');
+		document.write('<a href="#URL_SITE_SPIP/#URL_ARTICLE"  class="open"></a>');
+		document.write('<img src="#URL_SITE_SPIP/[(#FICHIER|image_reduire{100,0}|copie_locale|extraire_attribut{src})]" class="full" />');
+		document.write('<img src="#URL_SITE_SPIP/[(#FICHIER|image_reduire{60}|copie_locale|extraire_attribut{src})]" class="thumbnail" />');
+		document.write('</div>');	
+</BOUCLE_doc>
+document.write('</div>');	
+document.write('</p>');	
+</B_doc>

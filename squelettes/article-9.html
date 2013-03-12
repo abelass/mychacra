@@ -1,0 +1,129 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="description" content="[(#INTRODUCTION|couper{300}|textebrut)]<B_mots_cles>, <BOUCLE_mots_cles(MOTS) {id_article}{', '}>#TITRE</BOUCLE_mots_cles>" />
+<INCLURE{fond=inc/inc-head}>
+</head>
+
+<body class="page_article">
+	<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}{id_rubrique}{lang=#ENV{lang}}>
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/?lang=#ENV{lang}"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
+	
+<div class="conteneur leftmenu">
+<div id="limiteur">
+    <div class="coleft">
+        <div class="col1wrap">	
+            <div class="col1">
+				<div class="boite">				
+				<div class="sus"><div></div></div>
+					<div class="contenu">
+				#DEBUT_SURLIGNE
+				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+				<h2 class="#EDIT{titre} titre">#TITRE</h2>				
+				[(#LOGO_ARTICLE||image_reduire{200,200})]
+				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+				#FIN_SURLIGNE
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-menu_agenda}{id_rubrique}{affichage=article}{id_article}{affichage=agenda}{id_evenement}>
+
+			
+
+
+		[(#REM) Formulaire �dition ou ajout evenement si connect� et �dition s�lectionn�e]  
+		<a name="select"></a>
+		[(#SESSION{id_auteur}|?{' '})[(#ENV{editer}|=={'oui'}|?{' ',''})<div>#FORMULAIRE_EDITION_EVENEMENT</div>]]
+
+<B_lesevenements> 
+<ul [(#ENV{ajout_evenement}=={oui}|?{style='display:none;',class='spip'})]>
+<BOUCLE_lesevenements(EVENEMENTS) {id_evenement} {par date}>
+<li
+class="spip"><strong><a href="[(#URL_ARTICLE|parametre_url{id_evenement,#ID_EVENEMENT}|parametre_url{date,#DATE_DEBUT})]" title="#TITRE">[(#TITRE|supprimer_numero|couper{80})]</a>&nbsp;:</strong>
+  [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+  le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{
+   [(#REM) memes heures ?]
+     [(#DATE_DEBUT|=={#DATE_FIN}|?{ <:a:>  
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+   [(#REM) pas memes heures ?]
+     [(#DATE_DEBUT|!={#DATE_FIN}|?{<:from:> 
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] <:a:>
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+ [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{ : 
+  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] <:a:> 
+[(#DATE_FIN|nom_jour)]
+  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{ : 
+  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
+[-&nbsp;<:lieu:>&nbsp;: (#LIEU)] <BOUCLE_pays(MOTS) {id_evenement}{id_groupe=1}>(#TITRE)</BOUCLE_pays>
+[<br />(#DESCRIPTIF)]
+</li>
+
+  </BOUCLE_lesevenements>
+</ul>
+</B_lesevenements>
+<B_lesevenements_edit> 
+<ul>
+<BOUCLE_lesevenements_edit(EVENEMENTS) {par date}{age<=0} {id_article}>
+<li
+class="spip"><strong>[(#TITRE|supprimer_numero|couper{80})]&nbsp;:</strong>
+  [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+  le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{
+   [(#REM) memes heures ?]
+     [(#DATE_DEBUT|=={#DATE_FIN}|?{ <:a:>  
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+   [(#REM) pas memes heures ?]
+     [(#DATE_DEBUT|!={#DATE_FIN}|?{<:from:> 
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] <:a:>
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+ [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{ : 
+  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] <:a:> 
+[(#DATE_FIN|nom_jour)]
+  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{ : 
+  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
+[-&nbsp;<:lieu:>&nbsp;: (#LIEU)]
+</li>
+
+  </BOUCLE_lesevenements_edit>
+</ul>
+</B_lesevenements_edit>
+
+					</div><!-- fin contenu-->
+				</div><!-- fin boite-->
+
+	    </div><!-- Col1 1 end -->
+
+	</div><!-- col1wrap end -->
+		[(#REM) Menu de navigation laterale ]
+	    <div class="col2"><!-- Column 2 start -->
+				<div class="boite">				
+				<div class="sus"><div></div></div>
+			[(#REM) Menu de navigation par rubriques ]
+			<INCLURE{fond=inc/inc-rubriques}{id_rubrique}>
+				</div><!-- fin boite-->
+				</div><!-- Column 2 end -->
+
+	     </div>
+		<div class="bottom "> <div></div></div>
+    </div>	<!-- coleft end -->
+<br class="nettoyeur" />    
+    </div>
+</div><!-- fin conteneur leftmenu -->
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{id_article}>
+	</div>
+</body>
+</html>
+</BOUCLE_article_principal>

@@ -1,0 +1,5 @@
+#ENV
+<BOUCLE_mots(MOTS){id_mot}>#TITRE
+#DESCRIPTIF
+</BOUCLE_mots>
+

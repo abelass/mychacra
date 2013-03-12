@@ -1,0 +1,35 @@
+<div id="entete">			
+		<div id="banner">	
+				<div class="boite format_png">
+[(#REM) Afficher le logo ou le titre du site ]
+<img style="float:left;top:0;" src="[(#CHEMIN{styles/images/banner12II.png})]" width="809" height="174"  usemap="#map" alt="Contagious Web Solutions" />
+<map name="map" id="map">
+<!-- #$-:Image map file created by GIMP Image Map plug-in -->
+<!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
+<!-- #$-:Please do not edit lines starting with "#$" -->
+<!-- #$VERSION:2.3 -->
+<!-- #$AUTHOR:Rainer -->
+<area shape="rect" coords="1,1,222,169" alt="<:accueil_site:>" href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" />
+</map>				
+				<div >
+				<div class="boite_langue">
+
+<INCLURE{fond=inc/inc-langues}{env}/>
+<br/>
+
+<div class="recherche">#FORMULAIRE_RECHERCHE</div>	
+</div>
+	<ul class="menuhor">
+	<BOUCLE_menu(RUBRIQUES) {racine}{tout}{par num titre}>
+	[(#ID_RUBRIQUE|!={12}|?{
+		<li[ class="(#EXPOSE)"]><a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]"  title="[(#TITRE)]">[(#TITRE|couper{80})]</a></li>,
+		[(#SESSION{id_auteur}|oui)<li[ class="(#EXPOSE)"]><a href="[(#URL_RUBRIQUE|parametre_url{id_auteur,#SESSION{id_auteur}}|parametre_url{lang,#ENV{lang}})]"  title="[(#TITRE)]">[(#TITRE|couper{80})]</a></li>]
+		})]
+	</BOUCLE_menu>
+	</ul>
+
+	</div>
+			</div><!-- fin boite-->
+		</div><!-- fin menuhor-->
+
+</div><!-- fin entete-->				

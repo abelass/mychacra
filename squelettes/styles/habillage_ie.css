@@ -1,0 +1,44 @@
+body {
+        margin:auto;
+
+	width: 1200px; /* sets max-width for IE */    
+		/* Minimum width of layout - remove line if not required */							/* The min-width property does not work in old versions of Internet Explorer */
+		font-size:81.5%;		
+background:#E8E5E5;
+color: #3a3a3a;
+  } 
+
+#limiteur{
+background:url(images/limiteur_IE.png);
+background-repeat: repeat-y;
+background-position: left;	
+width: 100%;
+overflow: hidden;
+}	
+ul.menuhor li a {padding-top:11px;}
+
+ul.menuhor {
+position:relative;
+top:-38px;
+left:230px;
+margin:0;
+width:500px;
+}
+
+
+#banner .boite{
+background: url(images/banner_right.gif);
+background-repeat: no-repeat;
+background-position:top right;
+}	
+
+.bottom {margin-bottom:-2px;}
+
+.spip_logos, .thumbnails {
+	float:left;
+	margin: 0;
+border:4px solid #769C2F;
+}
+
+
+

@@ -1,0 +1,59 @@
+
+
+
+<BOUCLE_art(ARTICLES){id_article}>
+#SET{url_article,#URL_ARTICLE}
+</BOUCLE_art>
+
+<BOUCLE_rub(RUBRIQUES){id_rubrique}{tout}>
+#SET{url_rub,#URL_RUBRIQUE}
+</BOUCLE_rub>
+	[(#REM)Affiche les menus de selction pour la rubrique agenda, page et article agenda]
+
+		<div class="ed_agenda">		
+		[(#ENV{affichage}|=={'agenda'}|?{' ',''})
+		<a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="<:monthly_view:>"><:monthly_view:></a>]
+		[(#ENV{affichage}|=={'rubrique'}|?{' ',''})
+		<a href="[(#URL_ARTICLE|parametre_url{page,agenda}|parametre_url{theme,11}|parametre_url{annee,[(#DATE|annee)]}|parametre_url{mois,[(#DATE|mois)]}|parametre_url{jour,1}|parametre_url{type,mois})]" title="<:detailed_view:>"><:detailed_view:></a>
+[(#SESSION{id_auteur}|?{ | <a href='[(#GET{url_rub}|parametre_url{edit_agenda,1}|parametre_url{lang,#ENV{lang}})]#select'><:agenda:titre_cadre_ajouter_evenement:></a>,''})]		
+		[(#ENV{affichage}|=={'article'}|?{' ',''})
+		<a href="[(#URL_ARTICLE|parametre_url{page,agenda}|parametre_url{theme,11}|parametre_url{annee,[(#DATE_DEBUT|annee)]}|parametre_url{mois,[(#DATE_DEBUT|mois)]}|parametre_url{jour,1}|parametre_url{type,mois})]" title="<:detailed_view:>"><:detailed_view:> </a>|
+<a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="<:monthly_view:>"><:monthly_view:></a>
+		]
+		
+		[(#REM) Afichage sous menu pour agenda]  
+
+[(#SESSION{id_auteur}|?{
+		
+		[(#REM) Affichage si connect�] 
+[(#ENV{affichage}|=={'article'}|?{
+		[(#REM) Affichage si dans contexte d'un article] 
+[(#ENV{ajout_evenement}!=={'oui'}|?{ | <a href='[(#GET{url_article}|parametre_url{ajout_evenement,oui}|parametre_url{editer,oui})]#select'><:agenda:titre_cadre_ajouter_evenement:></a>
+		[(#REM) Affichage si dans contexte d'un evenement] 
+[(#ID_EVENEMENT|?{
+ | <a href="[(#SELF|parametre_url{editer,oui})]#select"title="<:edit:>" ><:edit:></a>
+ [(#REM) Pas d'affichage en dehors d'un evenement]
+ ,
+ ''
+})]
+ [(#REM) Pas d'affichage en dehors de contexte d'article]
+,
+''
+})]
+,''})]
+
+[(#REM) Affichage si non connect�] 
+,
+| <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" class='login_modal'><:lien_connecter:> </a>| <a href="spip.php?page=inscription"><:inscription:></a> })
+]		
+	]
+		</div>	
+		
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+#CACHE{7200}
+<h3><multi>[en]Please indicate your needs[fr]Veuillez préciser vos souhaits[es]Precisa sus preferencias[de]Geben Sie uns Ihre Wünsche an</multi></h3>
+<div align="#ENV{align,left}">
+
+<form method="post" action="[(#CHEMIN{squelettes/contact.php})]"> 
+
+<input type="hidden" name="sendto" value="[(#ENV{email}|?{#ENV{email},#EMAIL_WEBMASTER})]"></input>
+<input type="hidden" name="url" value="#URL_SITE_SPIP/#SELF"></input>
+
+<div>
+<label><font color=red>*</font> <:nom_complet:> :</label>
+<input size=25 name="Name"></input>
+</div>
+<div>
+<label><font color=red>*</font> Email:</label>
+<input size=25 name="email"></input>
+</div>
+
+<B_fonctionnalites>
+<div>
+<div>
+<label><font color=red>*</font><:choix_fonctionnalites:> :</label>
+</div>
+<select name="Fonctions[]"multiple="yes" size="5">
+<option value="default" selected="selected" style="display:none;">#TITRE</option>
+<BOUCLE_fonctionnalites(MOTS) {id_groupe=1}{par titre}>
+<option value="#TITRE">#TITRE</option>
+</BOUCLE_fonctionnalites>
+<option value="<:autres_fonctionnalites:>"><:autres_fonctionnalites:></option>
+</select>
+</div>
+</B_fonctionnalites>
+<div>
+<div>
+<label><:autres_fonctionnalites:></label>
+</div>
+<textarea name="Autres" rows=5 cols=35></textarea>
+</div>
+
+
+<div>
+<div>
+<label><:commentaire:> :</label>
+</div>
+<textarea name="Commentaire" rows=5 cols=35></textarea>
+</div>
+<div>
+<input type=submit name="send" value="Ok"></input> 
+</div>
+<small><font color=red>*</font> <:champs_obligatoire:></small>
+</table> 
+</form>
+
+</div>
+
+

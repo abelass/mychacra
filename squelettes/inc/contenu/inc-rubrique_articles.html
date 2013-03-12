@@ -1,0 +1,32 @@
+[(#REM) Articles de la rubrique ]
+<B_articles>
+<div>
+	<BOUCLE_cat(MOTS){id_mot}>
+		<h3>#TITRE</h3>
+	</BOUCLE_cat>	
+	<h3 class="invisible"><:articles_rubrique:></h3>
+	<//B_cat>	
+	[<p class="pagination">(#PAGINATION)</p>]
+	<ul class="spip">
+	<BOUCLE_articles(ARTICLES) {id_rubrique} {id_mot ?}{!par date}{lang} {pagination}>
+		<li>
+			<h4 class="titre"><a href="[(#URL_ARTICLE|parametre_url{id_mot,#ENV{id_mot}})]">#TITRE</a></h4><small>[(#DATE|affdate)]</small>
+		</li>
+	</BOUCLE_articles>
+	</ul>
+</div>
+</B_articles>
+	<B_articles_alter>
+	<div >
+		<h3 class="invisible"><:articles_rubrique:></h3>
+		[<p class="pagination">(#PAGINATION)</p>]
+		<ul class="spip">
+		<BOUCLE_articles_alter(ARTICLES) {id_rubrique} {!par date}{pagination}>
+			<li>
+				<h4 class="titre"><a href="#URL_ARTICLE">#TITRE</a> [#LANG]</h4><small>[(#DATE|affdate)]</small>
+			</li>
+		</BOUCLE_articles_alter>
+		</ul>
+		</div>
+	</B_articles_alter>			
+<//B_articles>
